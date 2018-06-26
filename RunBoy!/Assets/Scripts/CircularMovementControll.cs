@@ -48,6 +48,10 @@ public class CircularMovementControll : MonoBehaviour {
 
         //transform.Rotate(0, 0, angled);
         SetUiText();
+        if(forwardSpeed<=0)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -58,7 +62,12 @@ public class CircularMovementControll : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Energy"))
         {
+            
             energy += 50;
+            if(energy>100)
+            {
+                energy = 100;
+            }
             collision.gameObject.SetActive(false);
            
         }
